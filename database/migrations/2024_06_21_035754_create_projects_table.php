@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id'); 
             $table->string('nama_project');
-            $table->integer('alokasi');
+            $table->string('alokasi');
             $table->string('skala');
             $table->string('status');
             $table->date('tanggal_mulai');
-            $table->date('tanggal_berakhir'); 
+            $table->date('tanggal_berakhir');
             $table->timestamps();
         });
     }

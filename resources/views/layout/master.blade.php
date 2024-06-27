@@ -125,7 +125,7 @@
 												<!--end::Avatar-->
 												<!--begin::Username-->
 												<div class="d-flex flex-column">
-													<div class="fw-bold d-flex align-items-center fs-5">Alice Page 
+													<div class="fw-bold d-flex align-items-center fs-5">Sinta
 													<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
 													<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">alice@kt.com</a>
 												</div>
@@ -322,7 +322,7 @@
 								<!--end::User menu-->
 								<!--begin:Info-->
 								<div class="d-flex flex-column">
-									<a href="pages/user-profile/overview.html" class="app-navbar-user-name text-gray-900 text-hover-primary fs-5 fw-bold">Alice Page</a>
+									<a href="pages/user-profile/overview.html" class="app-navbar-user-name text-gray-900 text-hover-primary fs-5 fw-bold">Sinta</a>
 									<span class="app-navbar-user-info text-gray-600 fw-semibold fs-7">Project Manager</span>
 								</div>
 								<!--end:Info-->
@@ -397,7 +397,7 @@
 								<!--end::Menu wrapper-->
 							</div>
 							<!--end::Quick links-->
-					</div>
+					            </div>
 									</div>
 									<!--end::Toolbar wrapper-->
 								</div>
@@ -477,6 +477,7 @@
 		<script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
 		<!--end::Vendors Javascript-->
 		<!--begin::Custom Javascript(used for this page only)-->
+		<script src="assets/plugins/global/plugins.bundle.js"></script>
 		<script src="assets/js/widgets.bundle.js"></script>
 		<script src="assets/js/custom/widgets.js"></script>
 		<script src="assets/js/custom/apps/chat/chat.js"></script>

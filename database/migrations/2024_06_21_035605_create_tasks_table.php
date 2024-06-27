@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
-            $table->string('judul','100');
-            $table->string('id_project','255');
-            $table->string('pembuat','255');
-            $table->string('penerima','255');
-            $table->string('status','255');
+            $table->uuid('id')->primary(); 
+            $table->string('judul', 100);
+            $table->uuid('id_project'); 
+            $table->string('pembuat', 255);
+            $table->string('penerima', 255);
+            $table->string('status', 255);
             $table->date('tgl_dibuat');
             $table->date('deadline');
-            $table->string('urugensi', '100');
+            $table->string('urugensi', 100);
             $table->text('deskripsi');
             $table->timestamps();
         });

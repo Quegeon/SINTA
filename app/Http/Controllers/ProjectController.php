@@ -10,6 +10,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
+
         return view('projects.index', compact('projects'));
     }
 
@@ -20,48 +21,61 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nama_project' => 'required',
-            'alokasi' => 'required|integer',
-            'skala' => 'required',
-            'status' => 'required',
+        
+        $validatedData = $request->validate([
+            'nama_project' => 'required|string|max:255',
+            'alokasi' => 'required|string|max:255',
+            'skala' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
             'tanggal_mulai' => 'required|date',
             'tanggal_berakhir' => 'required|date',
         ]);
+      
 
-        Project::create($request->all());
-        return redirect()->route('projects.index')->with('success', 'Project created successfully.');
+        Project::create($validatedData);
+
+        return redirect()->route('projects.index')
+            ->with('success', 'Proyek berhasil ditambahkan.');
     }
 
-    public function show(Project $project)
+    public function show($id)
     {
+        $project = Project::findOrFail($id);
+
         return view('projects.show', compact('project'));
     }
 
-    public function edit(Project $project)
+    public function edit($id)
     {
+        $project = Project::findOrFail($id);
+
         return view('projects.edit', compact('project'));
     }
 
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'nama_project' => 'required',
+        $validatedData = $request->validate([
+            'nama_project' => 'required|string|max:255',
             'alokasi' => 'required|integer',
-            'skala' => 'required',
-            'status' => 'required',
+            'skala' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
             'tanggal_mulai' => 'required|date',
             'tanggal_berakhir' => 'required|date',
         ]);
 
-        $project->update($request->all());
-        return redirect()->route('projects.index')->with('success', 'Project updated successfully.');
+        $project = Project::findOrFail($id);
+        $project->update($validatedData);
+
+        return redirect()->route('projects.index')
+            ->with('success', 'Proyek berhasil diperbarui.');
     }
 
-    public function destroy(Project $project)
+    public function destroy($id)
     {
+        $project = Project::findOrFail($id);
         $project->delete();
-        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
+
+        return redirect()->route('projects.index')
+            ->with('success', 'Proyek berhasil dihapus.');
     }
 }
-

@@ -12,14 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('karyawans', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama', '100');
-            $table->string('role', '100');
-            $table->string('username', '100');
-            $table->string('password', '100');
-            $table->string('no_telp', '100');
+            $table->bigIncrements('id'); 
+            $table->string('nama', 100);
+            $table->string('role', 100);
+            $table->string('username', 100);
+            $table->string('password', 100);
+            $table->string('no_telp', 100);
             $table->float('kinerja')->nullable();
-            $table->integer('jumlah_tugas_selesai', '11')->nullable();
+            $table->integer('jumlah_tugas_selesai')->nullable();
             $table->timestamps();
         });
     }
