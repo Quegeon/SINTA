@@ -10,7 +10,6 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-
         return view('projects.index', compact('projects'));
     }
 
@@ -21,8 +20,8 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
-        
         $validatedData = $request->validate([
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nama_project' => 'required|string|max:255',
             'alokasi' => 'required|string|max:255',
             'skala' => 'required|string|max:255',
@@ -30,10 +29,16 @@ class ProjectController extends Controller
             'tanggal_mulai' => 'required|date',
             'tanggal_berakhir' => 'required|date',
         ]);
-      
+
+        if ($request->hasFile('gambar_file')) {
+            $imageName = time().'.'.$request->gambar_file->getClientOriginalExtension();
+            $request->gambar_file->move(public_path('gambars'), $imageName);
+            $validatedData['gambar'] = $imageName; 
+        } else {
+            $validatedData['gambar'] = null;
+        }
 
         Project::create($validatedData);
-
         return redirect()->route('projects.index')
             ->with('success', 'Proyek berhasil ditambahkan.');
     }

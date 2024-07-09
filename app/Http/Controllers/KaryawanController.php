@@ -19,23 +19,30 @@ class KaryawanController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nama' => 'required|string|max:100',
-            'role' => 'required|string|max:100',
-            'username' => 'required|string|max:100|unique:karyawans',
-            'password' => 'required|string|max:100',
-            'no_telp' => 'required|string|max:100',
-            'kinerja' => 'nullable|numeric',
-            'jumlah_tugas_selesai' => 'nullable|integer',
-        ]);
+{
+    $validated = $request->validate([
+        'foto' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'nama' => 'required|string|max:100',
+        'role' => 'required|string|max:100',
+        'username' => 'required|string|max:100|unique:karyawans',
+        'password' => 'required|string|max:100',
+        'no_telp' => 'required|string|max:100',
+        'kinerja' => 'nullable|numeric',
+        'jumlah_tugas_selesai' => 'nullable|integer',
+    ]);
 
-        $validated['password'] = bcrypt($validated['password']);
+    $validated['password'] = bcrypt($validated['password']);
 
-        Karyawan::create($validated);
-
-        return redirect()->route('karyawans.index')->with('success', 'Karyawan berhasil ditambahkan');
+    if ($request->hasFile('foto')) {
+        $imageName = time().'.'.$request->foto->extension();
+        $request->foto->move(public_path('fotos'), $imageName);
+        $validated['foto'] = $imageName;
     }
+
+    Karyawan::create($validated);
+
+    return redirect()->route('karyawans.index')->with('success', 'Karyawan berhasil ditambahkan');
+}
 
     public function show(Karyawan $karyawan)
     {
@@ -49,6 +56,7 @@ class KaryawanController extends Controller
 
     public function update(Request $request, Karyawan $karyawan)
     {
+        
         $validated = $request->validate([
             'nama' => 'required|string|max:100',
             'role' => 'required|string|max:100',

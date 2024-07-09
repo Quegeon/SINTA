@@ -12,7 +12,7 @@
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
 		<meta property="og:site_name" content="Metronic by Keenthemes" />
 		<link rel="canonical" href="http://index.html" />
-		<link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="{{asset('logos.png')}}"/>
 		<!--begin::Fonts(mandatory for all pages)-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
@@ -50,7 +50,7 @@
 						<!--begin::Logo-->
 						<div class="d-flex align-items-center me-auto">
 							<a href="index.html">
-								<img alt="Logo" src="assets/media/logos/default-small.svg" class="h-25px" />
+								<img alt="Logo" src="{{asset('logos.png')}}" class="h-25px" />
 							</a>
 						</div>
 						<!--end::Logo-->
@@ -89,7 +89,7 @@
 											<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
 												<!--begin::Item-->
 												<li class="breadcrumb-item text-muted">
-													<a href="index.html" class="text-muted text-hover-primary">Home</a>
+													<a href="{{route('Dashboard')}}" class="text-muted text-hover-primary">Home</a>
 												</li>
 												<!--end::Item-->
 												<!--begin::Item-->
@@ -125,7 +125,7 @@
 												<!--end::Avatar-->
 												<!--begin::Username-->
 												<div class="d-flex flex-column">
-													<div class="fw-bold d-flex align-items-center fs-5">Sinta
+													<div class="fw-bold d-flex align-items-center fs-5">
 													<span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span></div>
 													<a href="#" class="fw-semibold text-muted text-hover-primary fs-7">alice@kt.com</a>
 												</div>
@@ -322,7 +322,7 @@
 								<!--end::User menu-->
 								<!--begin:Info-->
 								<div class="d-flex flex-column">
-									<a href="pages/user-profile/overview.html" class="app-navbar-user-name text-gray-900 text-hover-primary fs-5 fw-bold">Sinta</a>
+									<a href="pages/user-profile/overview.html" class="app-navbar-user-name text-gray-900 text-hover-primary fs-5 fw-bold">Alice Page</a>
 									<span class="app-navbar-user-info text-gray-600 fw-semibold fs-7">Project Manager</span>
 								</div>
 								<!--end:Info-->

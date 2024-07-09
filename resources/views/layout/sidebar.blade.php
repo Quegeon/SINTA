@@ -2,7 +2,7 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="100px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
 	<div class="app-sidebar-logo d-none d-lg-flex flex-center pt-10 mb-3" id="kt_app_sidebar_logo">
 		<a href="index.html">
-			<img alt="Logo" src="assets/media/logos/default-small.svg" class="h-30px" />
+			<img alt="Logo" src="{{asset('logos.png')}}" class="h-50px" />
 		</a>
 	</div>
 	<div class="app-sidebar-menu d-flex flex-center overflow-hidden flex-column-fluid">
@@ -93,12 +93,14 @@
 							</div>
 						</div>
 						<div class="menu-item menu-accordion">
-							<span class="menu-link">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Daftar Tugas</span>
-							</span>
+							<div class="menu-item">
+								<a href="{{ route('tasks.index') }}" class="menu-link">
+									<span class="menu-bullet">
+										<span class="bullet bullet-dot"></span>
+									</span>
+									<span class="menu-title">Daftar Tugas</span>
+								</a>
+							</div>
 							<span class="menu-link">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
@@ -167,7 +169,7 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="100px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
 	<div class="app-sidebar-logo d-none d-lg-flex flex-center pt-10 mb-3" id="kt_app_sidebar_logo">
 		<a href="index.html">
-			<img alt="Logo" src="assets/media/logos/default-small.svg" class="h-30px" />
+			<img alt="Logo" src="{{asset('/media/logos/default-small.svg" class="h-30px" />
 		</a>
 	</div>
 	<div class="app-sidebar-menu d-flex flex-center overflow-hidden flex-column-fluid">
