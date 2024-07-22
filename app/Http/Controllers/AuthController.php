@@ -6,34 +6,50 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\Karyawan;
 
 class AuthController extends Controller
 {
-    // Menampilkan halaman login
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('auth.login'); 
     }
 
-    // Memproses login
+    public function isAdmin()
+    {
+        return Auth::check() && Auth::user()->role == 'Admin';
+    }
+
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'password' => 'required|string|min:8',
+        ]);
+        
+        $credentials = $request->only('username', 'password');
+        // dd($credentials);
 
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard');
+        // dd($credentials,Auth::guard('karyawan')->attempt($credentials));
+        if (Auth::guard('karyawan')->attempt($credentials)) {
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+            'username' => 'Akun tidak terdaftar !',
+        ])->onlyInput('username');
+
     }
 
-    // Logout
-    public function logout()
+  // Logout
+    public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('karyawan')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
         return redirect('/login');
     }
 
@@ -48,12 +64,13 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'username' => 'required|string|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        User::create([
+        Karyawan::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -77,8 +94,8 @@ class AuthController extends Controller
         );
 
         return $status === Password::RESET_LINK_SENT
-        ? back()->with(['status' => __($status)])
-        : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 
     // Memproses reset password
@@ -102,7 +119,7 @@ class AuthController extends Controller
         );
 
         return $status === Password::PASSWORD_RESET
-        ? redirect()->route('login')->with('status', __($status))
-        : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('login')->with('status', __($status))
+            : back()->withErrors(['email' => [__($status)]]);
     }
 }

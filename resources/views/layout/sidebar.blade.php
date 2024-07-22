@@ -1,8 +1,9 @@
-{{-- @if(auth()->user()->role === 'admin') --}}
+ @auth
+    @if(Auth::user()->role == 'Admin')
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="100px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
 	<div class="app-sidebar-logo d-none d-lg-flex flex-center pt-10 mb-3" id="kt_app_sidebar_logo">
 		<a href="index.html">
-			<img alt="Logo" src="{{asset('logos.png')}}" class="h-50px" />
+			<img alt="Logo" src="{{asset('logos.png')}}" class="h-50px rotate-icon fas fa-sync" />
 		</a>
 	</div>
 	<div class="app-sidebar-menu d-flex flex-center overflow-hidden flex-column-fluid">
@@ -21,7 +22,7 @@
 							</div>
 						</div>
 						<div class="menu-item">
-							<a href="{{ route('Dashboard') }}" class="menu-link">
+							<a href="{{ route('dashboard') }}" class="menu-link">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
@@ -42,22 +43,18 @@
 								<span class="menu-section fs-5 fw-bolder ps-1 py-1">Manajemen Pengguna</span>
 							</div>
 						</div>
-						<div class="menu-item menu-accordion">
-							<a href="{{ route('karyawans.index') }}" class="menu-link">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Data Pengguna</span>
-							</a>
-							<span class="menu-link">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Atvitas Pengguna</span>
-							</span>
+						<div class="menu-sub menu-sub-accordion">
+							<div class="menu-item">
+								<a href="{{ route('karyawans.index') }}" class="menu-link">
+									<span class="menu-bullet">
+										<span class="bullet bullet-dot"></span>
+									</span>
+									<span class="menu-title">Data Pengguna</span>
+								</a>
+							</div>
 						</div>
 					</div>
-				</div>
+				</div> 
 				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
 					<span class="menu-link menu-center">
 						<span class="menu-icon me-0">
@@ -165,11 +162,11 @@
 		</div>
 	</div>
 </div>
-{{-- @elseif(auth()->user()->role === 'karyawan')
+@elseif(in_array(Auth::user()->role, ['Support', 'Full Stack', 'Analyst', 'Developer','Project Manager']))
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar" data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="100px" data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
 	<div class="app-sidebar-logo d-none d-lg-flex flex-center pt-10 mb-3" id="kt_app_sidebar_logo">
 		<a href="index.html">
-			<img alt="Logo" src="{{asset('/media/logos/default-small.svg" class="h-30px" />
+			<img alt="Logo" src="{{asset('logos.png')}}" class="h-50px rotate-icon fas fa-sync" />
 		</a>
 	</div>
 	<div class="app-sidebar-menu d-flex flex-center overflow-hidden flex-column-fluid">
@@ -188,7 +185,7 @@
 							</div>
 						</div>
 						<div class="menu-item">
-							<a href="{{ route('Dashboard') }}" class="menu-link">
+							<a href="{{ route('dashboard') }}" class="menu-link">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
 								</span>
@@ -196,35 +193,7 @@
 							</a>
 						</div>
 					</div>
-				</div>
-				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
-					<span class="menu-link menu-center">
-						<span class="menu-icon me-0">
-							<i class="ki-outline ki-user-tick fs-2x"></i>
-						</span>
-					</span>
-					<div class="menu-sub menu-sub-dropdown menu-sub-indention px-2 py-4 w-250px mh-75 overflow-auto">
-						<div class="menu-item">
-							<div class="menu-content">
-								<span class="menu-section fs-5 fw-bolder ps-1 py-1">Manajemen Pengguna</span>
-							</div>
-						</div>
-						<div class="menu-item menu-accordion">
-							<a href="{{ route('karyawans.index') }}" class="menu-link">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Data Pengguna</span>
-							</a>
-							<span class="menu-link">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Atvitas Pengguna</span>
-							</span>
-						</div>
-					</div>
-				</div>
+				</div> 
 				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
 					<span class="menu-link menu-center">
 						<span class="menu-icon me-0">
@@ -260,12 +229,14 @@
 							</div>
 						</div>
 						<div class="menu-item menu-accordion">
-							<span class="menu-link">
-								<span class="menu-bullet">
-									<span class="bullet bullet-dot"></span>
-								</span>
-								<span class="menu-title">Daftar Tugas</span>
-							</span>
+							<div class="menu-item">
+								<a href="{{ route('tasks.index') }}" class="menu-link">
+									<span class="menu-bullet">
+										<span class="bullet bullet-dot"></span>
+									</span>
+									<span class="menu-title">Daftar Tugas</span>
+								</a>
+							</div>
 							<span class="menu-link">
 								<span class="menu-bullet">
 									<span class="bullet bullet-dot"></span>
@@ -330,4 +301,5 @@
 		</div>
 	</div>
 </div>
-@endif --}}
+ @endif
+ @endauth 

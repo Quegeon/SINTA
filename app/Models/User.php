@@ -22,6 +22,11 @@ class User extends Authenticatable
         'password',
     ];
 
+        public function isAdmin()
+    {
+        return $this->role === 'admin'; // Sesuaikan sesuai dengan cara Anda menentukan peran admin
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

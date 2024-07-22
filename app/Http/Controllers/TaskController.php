@@ -20,6 +20,7 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'judul' => 'required|string|max:100',
             'id_project' => 'required|uuid',

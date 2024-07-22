@@ -1,5 +1,6 @@
 @extends('layout.master')
-
+@section('page-title', 'Task')
+@section('breadcrumb', 'Task')
 @section('content')
 <div class="content-wrapper">
     <div class="row">
@@ -12,7 +13,8 @@
                     </div>
                 </div>
                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#kt_modal_add_task">
-                <i class="ki-outline ki-plus fs-2"></i>Tambah Karyawan</button>             
+                    <i class="ki-outline ki-plus fs-2"></i>Tambah Karyawan
+                </button>             
             </div>
             <div class="card-body py-4">
                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_projects">
@@ -48,7 +50,7 @@
                             <td>{{ $task->status }}</td>
                             <td>{{ $task->tgl_dibuat }}</td>
                             <td>{{ $task->deadline }}</td>
-                            <td>{{ $task->urugensi }}</td>
+                            <td>{{ $task->urgensi }}</td>
                             <td class="text-end">
                                 <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                     Aksi <i class="ki-outline ki-down fs-5 ms-1"></i>

@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'karyawan' => [
+        'driver' => 'session',
+        'provider' => 'karyawans',
+    ],
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'karyawans' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Karyawan::class,
+        ],
     ],
 
     /*
@@ -97,6 +105,13 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+            'karyawans' => [
+        'provider' => 'karyawans',
+        'table' => 'password_resets',
+        'expire' => 60,
+        'throttle' => 60,
+    ],
+
     ],
 
     /*

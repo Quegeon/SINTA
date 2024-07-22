@@ -1,4 +1,6 @@
 @extends('layout.master')
+@section('page-title', 'Dashboard')
+@section('breadcrumb', 'Dashboard')
 @section('content')
 <div class="row gx-5 gx-xl-10">
     <!--begin::Col-->
