@@ -11,11 +11,11 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('dashboard');
-})->middleware('auth'); 
+})->middleware('auth');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard')
-    ->middleware('auth:karyawan'); 
+    ->middleware('auth:karyawan');
 
 // Authentication 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -47,7 +47,7 @@ Route::middleware(['auth:karyawan'])->group(function () {
     Route::put('/karyawans/update/{id}', [KaryawanController::class, 'update'])->name('karyawans.update');
     Route::get('karyawans/{id}/destroy', [KaryawanController::class, 'destroy'])->name('karyawans.destroy');
     Route::get('karyawans/{id}/show', [KaryawanController::class, 'show'])->name('karyawans.show');
-    Route::get('/karyawans/{id}/detail', [KaryawanController::class, 'detail'])->name('karyawans.detail');  
+    Route::get('/karyawans/{id}/detail', [KaryawanController::class, 'detail'])->name('karyawans.detail');
 });
 
 // Task 
@@ -55,10 +55,10 @@ Route::middleware(['auth:karyawan'])->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
-    Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
-    Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
-    Route::put('/tasks/{task}', [TaskController::class, 'update'])->name('tasks.update');
-    Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+    Route::get('/tasks/{id}', [TaskController::class, 'show'])->name('tasks.show');
+    Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');
+    Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('tasks.update');
+    Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 });
 
 Route::middleware(['auth:karyawan'])->group(function () {
@@ -66,9 +66,8 @@ Route::middleware(['auth:karyawan'])->group(function () {
     Route::get('admins/taskuser', [AdminController::class, 'taskuser'])->name('admins.taskuser');
     Route::get('admins/create', [AdminController::class, 'create'])->name('admins.create');
     Route::post('admins', [AdminController::class, 'store'])->name('admins.store');
-    Route::get('admins/{admin}', [AdminController::class, 'show'])->name('admins.show');
-    Route::get('admins/{admin}/edit', [AdminController::class, 'edit'])->name('admins.edit');
-    Route::put('admins/{admin}', [AdminController::class, 'update'])->name('admins.update');
-    Route::delete('admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
+    Route::get('admins/{id}', [AdminController::class, 'show'])->name('admins.show');
+    Route::get('admins/{id}/edit', [AdminController::class, 'edit'])->name('admins.edit');
+    Route::put('admins/{id}', [AdminController::class, 'update'])->name('admins.update');
+    Route::delete('admins/{id}', [AdminController::class, 'destroy'])->name('admins.destroy');
 });
-

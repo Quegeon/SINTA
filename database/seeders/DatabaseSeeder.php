@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Karyawan;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,9 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        Karyawan::create([
+            'foto' => 'user.png',
+            'nama' => 'user',
+            'username' => 'user',
+            'role' => 'Tech lead',
+            'password' => '$2y$12$RxQOcXP2oztYuScopcSmtOeq.jLi3OJd4T7mOgxtPMhF2Wrtkmua6', //(12345678)
+            'no_telp' => 'user',
+
         ]);
     }
 }
