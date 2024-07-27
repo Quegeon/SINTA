@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DashboardController;
-// use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AuthController;
@@ -47,7 +47,7 @@ Route::middleware(['auth:karyawan'])->group(function () {
     Route::put('/karyawans/update/{id}', [KaryawanController::class, 'update'])->name('karyawans.update');
     Route::get('karyawans/{id}/destroy', [KaryawanController::class, 'destroy'])->name('karyawans.destroy');
     Route::get('karyawans/{id}/show', [KaryawanController::class, 'show'])->name('karyawans.show');
-    Route::get('/karyawans/{id}/detail', [KaryawanController::class, 'detail'])->name('karyawans.detail');
+    Route::get('/karyawans/{id}/detail', [KaryawanController::class, 'detail'])->name('karyawans.detail');  
 });
 
 // Task 
@@ -61,4 +61,14 @@ Route::middleware(['auth:karyawan'])->group(function () {
     Route::delete('/tasks/{task}', [TaskController::class, 'destroy'])->name('tasks.destroy');
 });
 
+Route::middleware(['auth:karyawan'])->group(function () {
+    Route::get('admins/settings', [AdminController::class, 'settings'])->name('admins.settings');
+    Route::get('admins/taskuser', [AdminController::class, 'taskuser'])->name('admins.taskuser');
+    Route::get('admins/create', [AdminController::class, 'create'])->name('admins.create');
+    Route::post('admins', [AdminController::class, 'store'])->name('admins.store');
+    Route::get('admins/{admin}', [AdminController::class, 'show'])->name('admins.show');
+    Route::get('admins/{admin}/edit', [AdminController::class, 'edit'])->name('admins.edit');
+    Route::put('admins/{admin}', [AdminController::class, 'update'])->name('admins.update');
+    Route::delete('admins/{admin}', [AdminController::class, 'destroy'])->name('admins.destroy');
+});
 

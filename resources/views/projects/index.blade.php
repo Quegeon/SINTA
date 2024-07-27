@@ -43,7 +43,7 @@
             break;
     }
    @endphp
-    <div class="col-md-4 col-xl-4 project-card {{ strtolower($project->status) }}">
+    <div class="col-md-4 col-xl-4 project-card draft">
         <div class="card border-hover-primary" id="ProjectCard">
             <div class="card-header border-0 pt-9">
                 <div class="symbol symbol-50px w-50px bg-light">
@@ -357,27 +357,29 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
-        var filterStatus = document.getElementById('filterStatus');
+    var filterStatus = document.getElementById('filterStatus');
 
-        // Event listener untuk perubahan nilai pada filter status
-        filterStatus.addEventListener('change', function () {
-            var selectedStatus = filterStatus.value.toLowerCase(); // Mengambil nilai filter yang dipilih
+    // Event listener untuk perubahan nilai pada filter status
+    filterStatus.addEventListener('change', function () {
+        var selectedStatus = filterStatus.value.toLowerCase(); // Mengambil nilai filter yang dipilih
 
-            var projectCards = document.querySelectorAll('.project-card'); // Mengambil semua elemen project card
+        var projectCards = document.querySelectorAll('.project-card'); // Mengambil semua elemen project card
 
-            // Loop melalui setiap project card dan terapkan filter
-            projectCards.forEach(function (card) {
-                var cardStatus = card.classList.contains(selectedStatus); // Memeriksa apakah card memiliki kelas status yang dipilih
+        // Loop melalui setiap project card dan terapkan filter
+        projectCards.forEach(function (card) {
+            // Memeriksa apakah card memiliki kelas status yang dipilih
+            var cardStatus = card.classList.contains(selectedStatus);
 
-                // Memeriksa apakah status proyek cocok dengan filter atau filter adalah "all"
-                if (selectedStatus === 'all' || cardStatus) {
-                    card.style.display = 'block'; // Menampilkan card jika cocok dengan filter
-                } else {
-                    card.style.display = 'none'; // Menyembunyikan card jika tidak cocok
-                }
-            });
+            // Memeriksa apakah status proyek cocok dengan filter atau filter adalah "all"
+            if (selectedStatus === 'all' || cardStatus) {
+                card.style.display = 'block'; // Menampilkan card jika cocok dengan filter
+            } else {
+                card.style.display = 'none'; // Menyembunyikan card jika tidak cocok
+            }
         });
     });
+});
+
 </script>
 @endsection
 @endsection

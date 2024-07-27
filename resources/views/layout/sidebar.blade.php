@@ -51,7 +51,7 @@
 									</span>
 									<span class="menu-title">Data Pengguna</span>
 								</a>
-							</div>
+							</div>				
 						</div>
 					</div>
 				</div> 
@@ -110,6 +110,38 @@
 								</span>
 								<span class="menu-title">Tugas Yang Saya Bisukan</span>
 							</span>
+						</div>
+					</div>
+				</div>
+				<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="right-start" class="menu-item py-2">
+					<span class="menu-link menu-center">
+						<span class="menu-icon me-0">
+							<i class="ki-outline ki-triangle fs-2x"></i>
+						</span>
+					</span>
+					<div class="menu-sub menu-sub-dropdown menu-sub-indention px-2 py-4 w-250px mh-75 overflow-auto">
+						<div class="menu-item">
+							<div class="menu-content">
+								<span class="menu-section fs-5 fw-bolder ps-1 py-1">Manajemen Admin</span>
+							</div>
+						</div>
+						<div class="menu-item menu-accordion">
+							<div class="menu-item">
+								<a href="{{ route('admins.settings') }}" class="menu-link">
+									<span class="menu-bullet">
+										<span class="bullet bullet-dot"></span>
+									</span>
+									<span class="menu-title">Admin Sett</span>
+								</a>
+							</div>
+							<div class="menu-item">
+								<a href="{{ route('admins.taskuser') }}" class="menu-link">
+									<span class="menu-bullet">
+										<span class="bullet bullet-dot"></span>
+									</span>
+									<span class="menu-title">Admin Task User</span>
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
